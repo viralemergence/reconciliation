@@ -81,7 +81,7 @@ propVar <- bind_rows(clean, raw)
 propVar %>% 
   ggplot(aes(x=data, y=as.numeric(as.character(Mode)), fill=Component)) + 
   geom_bar(stat="identity", colour="transparent") + 
-  scale_fill_brewer(palette = "Spectral") +
+  scale_fill_brewer(palette = "Set2") +
   theme_bw(base_size = 14) + 
   labs(x='Dataset', y='Proportion Variance') -> PropVar  
 
