@@ -261,17 +261,21 @@ Plot3b <- AM %>% reshape2::melt() %>%
   ggsave("OverlapPercentFigure.jpeg", units = "mm", height = 120, width = 250)
 
 
-(Plot1 + 
-    labs(y = "Cleaned") +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Hosts") +
-    Plot2 + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Viruses") +
-    Plot3 + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Associations"))/
-  (Plot1b + 
-     labs(y = "Uncleaned") +
-     theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Hosts") +
-     Plot2b + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Viruses") +
-     Plot3b + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Associations")) +
+(Plot1b + 
+    labs(y = "Uncleaned") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+    theme(axis.title.y = element_text(vjust = 3, size = 20, face = "bold")) + 
+    ggtitle("Hosts") +
+    Plot2b + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Viruses") +
+    Plot3b + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Associations"))/
+  (Plot1 + 
+     labs(y = "Cleaned") +
+     theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+     theme(axis.title.y = element_text(vjust = 3, size = 20, face = "bold")) + 
+     ggtitle("Hosts") +
+     Plot2 + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Viruses") +
+     Plot3 + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + ggtitle("Associations")) +
   plot_layout(guides = "collect") +
-  ggsave("OverlapPercentBothRows.jpeg", units = "mm", height = 200, width = 250)
+  ggsave("OverlapPercentBothRows.jpeg", units = "mm", height = 160, width = 250)
 
 
