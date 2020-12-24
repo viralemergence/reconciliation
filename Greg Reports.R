@@ -1,0 +1,1 @@
+ReducedClover %>% group_by(Database) %>% summarise_at("Virus", nunique) %>% pull(Virus) %>% divide_by(50000) %>% multiply_by(100)

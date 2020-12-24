@@ -279,3 +279,25 @@ Plot3b <- AM %>% reshape2::melt() %>%
   ggsave("OverlapPercentBothRows.jpeg", units = "mm", height = 160, width = 250)
 
 
+# Unique links ####
+
+ReducedClover %>% dplyr::select(Host, Database) %>% unique %>% 
+  group_by(Host) %>% 
+  summarise(N = n(), Database = paste0(Database, collapse = ", ")) %>% 
+  filter(N == 1) %>% group_by(Database) %>% count
+
+ReducedClover %>% dplyr::select(Virus, Database) %>% unique %>% 
+  group_by(Virus) %>% 
+  summarise(N = n(), Database = paste0(Database, collapse = ", ")) %>% 
+  filter(N == 1) %>% group_by(Database) %>% count
+
+ReducedClover %>% dplyr::select(Host, Virus, Database) %>% unique %>% 
+  mutate(Assoc = paste0(Host, Virus)) %>% dplyr::select(-c(Host, Virus)) %>% 
+  group_by(Assoc) %>% 
+  summarise(N = n(), Database = paste0(Database, collapse = ", ")) %>% 
+  filter(N == 1) %>% group_by(Database) %>% count %>% 
+  left_join(
+    ReducedClover$Database %>% table() %>% as_tibble() %>% 
+      rename(Database = 1, NTotal = 2)) %>% 
+  mutate(ProportionUnique = n/NTotal)
+O
