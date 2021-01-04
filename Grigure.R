@@ -300,4 +300,13 @@ ReducedClover %>% dplyr::select(Host, Virus, Database) %>% unique %>%
     ReducedClover$Database %>% table() %>% as_tibble() %>% 
       rename(Database = 1, NTotal = 2)) %>% 
   mutate(ProportionUnique = n/NTotal)
-O
+
+# Greg's fix for unique associations in table #####
+
+Clover %>% dplyr::select(Host, Virus, Database) %>% unique %>% 
+  group_by(Database) %>% 
+  summarise(NAssocs = n(),
+            NHost = nunique(Host),
+            NVirus = nunique(Virus)
+            ) %>% 
+  t
