@@ -1,5 +1,5 @@
 
-# Grigure ###
+# Figure 2 ###
 
 library(ggregplot); library(tidyverse); library(magrittr); library(igraph); library(colorspace); library(cowplot)
 library(patchwork)
