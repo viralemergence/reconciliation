@@ -3,7 +3,6 @@
 # ============= "Reconciliation" MS Figure 3: Temporal trends in data =================
 
 # dependencies and basedir
-setwd("C:/Users/roryj/Documents/PhD/202011_clover/reconciliation_ms/code/reconciliation/")
 pacman::p_load("dplyr", "magrittr", "ggplot2")
 
 # data
