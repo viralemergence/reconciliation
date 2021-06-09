@@ -4,13 +4,13 @@ library(tidyverse); library(ggregplot); library(MCMCglmm)
 setwd("~/Github/clover")
 
 #clo <- read_csv("./output/Clover_v1.0_NBCIreconciled_20201211.csv")
-clo<- read_csv("Clover_v1.0_NBCIreconciled_20201218.csv") #updated file 
+clo<- read.csv("./CLOVER_0.1_MammalViruses_AssociationsFlatFile.csv") #updated file 
 
 clo %>% 
-  select(Database, Host_Original, Virus_Original) %>%
+  select(Database, HostOriginal, VirusOriginal) %>%
   unique %>%
-  count(Database, Host_Original) %>%
-  arrange(Host_Original) -> raw
+  count(Database, HostOriginal) %>%
+  arrange(HostOriginal) -> raw
 
 clo %>% 
   select(Database, Host, Virus) %>%
@@ -50,7 +50,7 @@ cleanMod <- MCMCglmm(fixed= n ~ 1,
                      thin = 10*mf,burnin=3000*mf)
 
 rawMod <- MCMCglmm(fixed= n ~ 1, 
-                   random= ~ Database + Host_Original , 
+                   random= ~ Database + HostOriginal , 
                    prior=Prior2,
                    data=raw,
                    family = "poisson",
@@ -78,6 +78,7 @@ propVar <- bind_rows(cleanVar, rawVar)
 
 saveRDS(cleanMod, "Outputs/cleanDataMCMC.rds")
 saveRDS(rawMod, "Outputs/rawDataMCMC.rds")
+
 
 
 # prop var plots  ---------------------------------------------------------
