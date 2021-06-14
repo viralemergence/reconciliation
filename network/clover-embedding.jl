@@ -66,7 +66,4 @@ title!(pe, "EID2")
 title!(pg, "GMPD2")
 
 plot(ps, ph, pe, pg)
-savefig("clover.pdf")
 savefig("clover.png")
-savefig("clover.jpg")
-savefig("clover.tif")
